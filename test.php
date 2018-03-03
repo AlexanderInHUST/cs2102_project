@@ -32,5 +32,6 @@ $testJson = '{
              }';
 
 $temp = json_decode($testJson);
+print $temp->{"funding_sought"};
 
-var_dump($temp);
+//var_dump($temp);

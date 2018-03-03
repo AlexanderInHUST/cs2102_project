@@ -13,11 +13,15 @@ class BriefProjectInfo
     private $description;
     private $endTime;
 
-    public function __construct(Project $project) {
-        $this->setId($project->getId());
-        $this->setTitle($project->getTitle());
-        $this->setDescription($project->getDescription());
-        $this->setEndTime($project->getDuration() + $project->getStartDate());
+    private function __construct() { }
+
+    public static function fromProject(Project $project) {
+        $newBrief = new BriefProjectInfo();
+        $newBrief->setId($project->getId());
+        $newBrief->setTitle($project->getTitle());
+        $newBrief->setDescription($project->getDescription());
+        $newBrief->setEndTime($project->getDuration() + $project->getStartDate());
+        return $newBrief;
     }
 
     public function toJson() {
@@ -26,14 +30,6 @@ class BriefProjectInfo
 
     public static function toJsons(array $briefProjects) {
         return json_encode($briefProjects);
-    }
-
-    public function fromJson($json) {
-
-    }
-
-    public function fromJsons(array $jsons) {
-
     }
 
     /**
