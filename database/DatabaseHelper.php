@@ -8,6 +8,12 @@
 
 class DatabaseHelper {
 
+    private $pgConnection;
+
+    public function __construct() {
+
+    }
+
     public static function search(array $args) {
         //todo
         return null;
@@ -23,3 +29,6 @@ class DatabaseHelper {
         return null;
     }
 }
+
+
+print $xml->{'user'};

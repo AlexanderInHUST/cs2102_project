@@ -18,7 +18,7 @@
 //private $owner_account;
 
 $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
-$testJson = '{
+$testJson = '[{
                 "id":1,
                 "title":"DBS",
                 "description":"To create money",
@@ -29,9 +29,9 @@ $testJson = '{
                 "funding_sought":1000000,
                 "funding_now":100,
                 "owner_account":"tyf"
-             }';
+             }]';
 
-$temp = json_decode($testJson);
-print $temp->{"funding_sought"};
+$temp = json_decode($testJson, true);
+print $temp[0]{"funding_sought"};
 
 //var_dump($temp);
