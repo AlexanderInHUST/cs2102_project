@@ -6,17 +6,6 @@
  * Time: 下午9:47
  */
 
-//private $id;
-//private $title;
-//private $description;
-//private $start_date;
-//private $duration;
-//private $key_words;
-//private $categories;
-//private $funding_sought;
-//private $funding_now;
-//private $owner_account;
-
 $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
 $testJson = '[{
                 "id":1,
@@ -32,6 +21,8 @@ $testJson = '[{
              }]';
 
 $temp = json_decode($testJson, true);
-print $temp[0]{"funding_sought"};
+//print $temp[0]{"funding_sought"};
+
+phpinfo();
 
 //var_dump($temp);

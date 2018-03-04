@@ -6,6 +6,13 @@
  * Time: 下午9:26
  */
 
+include_once "../database/DatabaseHelper.php";
+include_once "../database/SqlHelper.php";
+include_once "../util/ClearCache.php";
+include_once "../util/ArgsHelper.php";
+include_once "../model/BriefProjectInfo.php";
+include_once "../model/Project.php";
+
 header('Content-type: text/json');
 
 if ($_SERVER['REQUEST_METHOD'] != 'GET') {
@@ -19,14 +26,22 @@ $page = $_GET['page'];
 $queryConditions = array();
 
 if ($keyword) {
-    $keywords = preg_split("/,/", $keyword);
-
+    ArgsHelper::convertIntoOb($keyword,$queryConditions, "keywords");
 }
 
 if ($category) {
-    $categories = preg_split("/,/", $category);
+    ArgsHelper::convertIntoOb($category,$queryConditions, "categories");
 }
 
-foreach ($keywords as $key) {
-    print $key;
+$where = SqlHelper::buildWherePart($queryConditions);
+$databaseHelper = new DatabaseHelper('../database/databaseinfo.xml');
+$queryResults = $databaseHelper->search("project", $where);
+
+$projectsArray = array();
+foreach ($queryResults as $queryResult) {
+    $detailProject = Project::fromObj($queryResult);
+    array_push($projectsArray, BriefProjectInfo::fromProject($detailProject));
 }
+
+$result = BriefProjectInfo::toJsons($projectsArray);
+echo $result;

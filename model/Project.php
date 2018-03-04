@@ -7,16 +7,16 @@
  */
 
 class Project {
-    private $id;
-    private $title;
-    private $description;
-    private $start_date;
-    private $duration;
-    private $key_words;
-    private $categories;
-    private $funding_sought;
-    private $funding_now;
-    private $owner_account;
+    public $id;
+    public $title;
+    public $description;
+    public $start_date;
+    public $duration;
+    public $key_words;
+    public $categories;
+    public $funding_sought;
+    public $funding_now;
+    public $owner_account;
 
     private function __construct() { } // So no one can call it outside
 
@@ -29,6 +29,7 @@ class Project {
         $newProject = new Project();
         $newProject->setId($jsonObj->{'id'});
         $newProject->setTitle($jsonObj->{'title'});
+        $newProject->setDescription($jsonObj->{'description'});
         $newProject->setStartDate($jsonObj->{'start_date'});
         $newProject->setDuration($jsonObj->{'duration'});
         $newProject->setKeyWords($jsonObj->{'key_words'});
@@ -36,6 +37,21 @@ class Project {
         $newProject->setFundingSought($jsonObj->{'funding_sought'});
         $newProject->setFundingNow($jsonObj->{'funding_now'});
         $newProject->setOwnerAccount($jsonObj->{'owner_account'});
+        return $newProject;
+    }
+
+    public static function fromObj($obj) {
+        $newProject = new Project();
+        $newProject->setId((int) $obj->{'id'});
+        $newProject->setTitle($obj->{'title'});
+        $newProject->setDescription($obj->{'description'});
+        $newProject->setStartDate((int) $obj->{'start_date'});
+        $newProject->setDuration((int) $obj->{'duration'});
+        $newProject->setKeyWords($obj->{'key_words'});
+        $newProject->setCategories($obj->{'categories'});
+        $newProject->setFundingSought((int) $obj->{'funding_sought'});
+        $newProject->setFundingNow((int) $obj->{'funding_now'});
+        $newProject->setOwnerAccount($obj->{'owner_account'});
         return $newProject;
     }
 

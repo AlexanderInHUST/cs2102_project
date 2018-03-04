@@ -11,10 +11,10 @@ class XmlHelper {
     private $xml;
 
     public function __construct($filename) {
-        $xml = simplexml_load_file($filename) or die("Error: Cannot create object");
+        $this->xml = simplexml_load_file($filename) or die("Error: Cannot create object");
     }
 
     public function getValue($key) {
-        return $this->xml{$key};
+        return $this->xml->{$key};
     }
 }

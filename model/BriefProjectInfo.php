@@ -8,10 +8,10 @@
 
 class BriefProjectInfo
 {
-    private $id;
-    private $title;
-    private $description;
-    private $endTime;
+    public $id;
+    public $title;
+    public $description;
+    public $endTime;
 
     private function __construct() { }
 

@@ -7,10 +7,10 @@
  */
 
 class User {
-    private $username;
-    private $password;
-    private $challenge_phrs;
-    private $type; // 1 for register; 2 for login; 3 for forget
+    public $username;
+    public $password;
+    public $challenge_phrs;
+    public $type; // 1 for register; 2 for login; 3 for forget
 
     private function __construct() { }
 
