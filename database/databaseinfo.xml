@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <info>
     <host>localhost</host>
+    <port>5432</port>
     <dbname>cs2102project</dbname>
     <user>tangyifeng</user>
     <password>39160816</password>

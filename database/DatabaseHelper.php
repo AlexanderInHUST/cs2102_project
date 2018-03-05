@@ -18,6 +18,7 @@ class DatabaseHelper {
     public function __construct($infoAddress) {
         $this->dataHelper = new XmlHelper($infoAddress);
         $config = "host=" . $this->dataHelper->getValue("host")
+            . " port=" . $this->dataHelper->getValue("port")
             . " dbname=" . $this->dataHelper->getValue("dbname")
             . " user=" . $this->dataHelper->getValue("user")
             . " password=" . $this->dataHelper->getValue("password");
