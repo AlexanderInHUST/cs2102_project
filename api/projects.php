@@ -15,6 +15,8 @@ include_once "../model/Project.php";
 
 header('Content-type: text/json');
 
+define("MAX_PROJS_ONE_PAGE", 2);
+
 if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     echo "[]";
     exit();
@@ -33,6 +35,10 @@ if ($category) {
     ArgsHelper::convertIntoOb($category,$queryConditions, "categories");
 }
 
+if (!$page) {
+    $page = "1";
+}
+
 $where = SqlHelper::buildWherePart($queryConditions);
 $databaseHelper = new DatabaseHelper('../database/databaseinfo.xml');
 $queryResults = $databaseHelper->search("project", $where);
@@ -43,5 +49,8 @@ foreach ($queryResults as $queryResult) {
     array_push($projectsArray, BriefProjectInfo::fromProject($detailProject));
 }
 
-$result = BriefProjectInfo::toJsons($projectsArray);
+$projectsArraySlice =
+    array_slice($projectsArray, (((int)$page) - 1) * MAX_PROJS_ONE_PAGE, MAX_PROJS_ONE_PAGE);
+
+$result = BriefProjectInfo::toJsons($projectsArraySlice);
 echo $result;
